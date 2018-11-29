@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 
 import { Login } from '@/actions';
+import CONFIG from '@/config';
 
 
 class Page extends PureComponent {
@@ -36,6 +37,11 @@ class Page extends PureComponent {
 
     const result = await dispatch(Login(data));
     if (result.error) return;
+
+    sessionStorage.setItem(
+      CONFIG.SESSION_KEY,
+      result.payload.access_token,
+    );
     history.push('/');
   }
 
