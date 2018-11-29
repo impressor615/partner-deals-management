@@ -12,5 +12,8 @@ module.exports = {
         "config": "webpack.dev.js",
       },
     }
-  }
+  },
+  "rules": {
+    "react/forbid-prop-types": "off",
+  },
 };
