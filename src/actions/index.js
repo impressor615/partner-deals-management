@@ -1,10 +1,8 @@
 export {
-  Login,
-  Logout,
+  login,
+  logout,
 } from './user';
 
 export {
   clearError,
 } from './commonUI';
-
-export default {};

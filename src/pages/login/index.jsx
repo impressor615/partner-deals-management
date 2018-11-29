@@ -8,7 +8,7 @@ import {
   Container, Form, FormGroup, Label, Input, Button,
 } from 'reactstrap';
 
-import { Login } from '@/actions';
+import { login } from '@/actions';
 import CONFIG from '@/config';
 
 
@@ -35,7 +35,7 @@ class Page extends PureComponent {
       password,
     });
 
-    const result = await dispatch(Login(data));
+    const result = await dispatch(login(data));
     if (result.error) return;
 
     sessionStorage.setItem(

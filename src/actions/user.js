@@ -9,7 +9,7 @@ import {
 } from '@/viewmodels/actionTypes';
 
 
-export const Login = data => dispatch => (
+export const login = data => dispatch => (
   dispatch({
     [RSAA]: {
       types: [
@@ -28,4 +28,4 @@ export const Login = data => dispatch => (
   })
 );
 
-export const Logout = () => ({ type: USER_LOGOUT });
+export const logout = () => ({ type: USER_LOGOUT });
