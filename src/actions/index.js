@@ -3,4 +3,8 @@ export {
   Logout,
 } from './user';
 
+export {
+  clearError,
+} from './commonUI';
+
 export default {};
