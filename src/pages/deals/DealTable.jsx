@@ -50,7 +50,7 @@ const DealTable = ({ items, onClick }) => (
     </tbody>
     <tfoot>
       <tr>
-        <td colSpan="14">기본 set: 30 rows</td>
+        <td colSpan="14">기본 set: 30rows</td>
       </tr>
     </tfoot>
   </Table>
