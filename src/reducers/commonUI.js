@@ -9,6 +9,13 @@ export const initialState = {
 };
 
 export default function (state = initialState, action) {
+  if (action.type.includes('REQ') && action.type.includes('FAILURE')) {
+    return {
+      ...state,
+      error: action.payload.message,
+    };
+  }
+
   switch (action.type) {
     case CLEAR_ERROR:
       return {
