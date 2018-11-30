@@ -78,4 +78,20 @@
     width: 100%;
     height: 100%;
   }
+
+  .ticket-form-cb-wrapper input[type=checkbox] {
+    margin-right: 20px;
+  }
+
+  .ticket-form > .add-button {
+    margin-bottom: 30px;
+  }
+
+  .ticket-form-show-price-wrapper input[type=checkbox] {
+    margin-right: 20px;
+  }
+
+  .ticket-form-show-price-wrapper {
+    text-align: right;
+  }
 }

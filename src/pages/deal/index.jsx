@@ -15,8 +15,8 @@ import {
 
 import CONFIG from '@/config';
 import {
-  // getPartners,
-  // getDestinations,
+  getPartners,
+  getDestinations,
   getDeal,
   setLoading,
 } from '@/actions';
@@ -32,6 +32,7 @@ import ReservationPointTextForm from './ReservationPointTextForm';
 import DealDateForm from './DealDateForm';
 import AlignIndexForm from './AlignIndexForm';
 import ImageForm from './ImageForm';
+import TicketsForm from './TicketsForm';
 
 
 class Page extends PureComponent {
@@ -57,6 +58,7 @@ class Page extends PureComponent {
     images: [],
     companyName: '',
     type: '',
+    tickets: [],
   }
 
   // TODO: getPartner access_denied 에러가 남
@@ -68,8 +70,8 @@ class Page extends PureComponent {
     const data = { token: accessToken };
 
     dispatch(setLoading(true));
-    // await dispatch(getPartners(data));
-    // await dispatch(getDestinations(data));
+    await dispatch(getPartners(data));
+    await dispatch(getDestinations(data));
     const result = await dispatch(getDeal({ ...data, id: match.params.id }));
     dispatch(setLoading(false));
     if (result.error) {
@@ -85,6 +87,7 @@ class Page extends PureComponent {
       weight,
       company,
       type,
+      tickets,
     } = result.payload;
     this.setState({
       title,
@@ -98,6 +101,18 @@ class Page extends PureComponent {
       weight: weight || 50,
       type,
       companyName: company.name ? company.name : '',
+      tickets: tickets.reduce((current, next) => {
+        const nextData = {
+          departure: next.departure.airportName,
+          arrival: [{
+            name: next.arrival.airportName,
+            price: next.price,
+            roundTripPrice: next.price * 2,
+          }],
+        };
+        current.push(nextData);
+        return current;
+      }, []),
     });
   }
 
@@ -155,6 +170,40 @@ class Page extends PureComponent {
     this.setState({ images: newImages });
   }
 
+  onTicketInputChange = ({ index, subIndex }) => (e) => {
+    e.stopPropagation();
+    const { tickets } = this.state;
+    const { id, value } = e.target;
+    const newTickets = [...tickets];
+    const newArrival = newTickets[index].arrival;
+    newArrival[subIndex][id] = parseInt(value, 10) || value;
+    newTickets[index].arrival = newArrival;
+    this.setState({ tickets: newTickets });
+  }
+
+  onArrivalAddClick = index => (e) => {
+    e.stopPropagation();
+    const { tickets } = this.state;
+    const data = {
+      name: '',
+      price: 0,
+      roundTripPrice: 0,
+    };
+    const newTickets = [...tickets];
+    newTickets[index].arrival.push(data);
+    this.setState({ tickets: newTickets });
+  }
+
+  onArrivalRemoveClick = ({ index, subIndex }) => (e) => {
+    e.stopPropagation();
+    const { tickets } = this.state;
+    const newTickets = [...tickets];
+    const newArrival = newTickets[index].arrival;
+    newArrival.splice(subIndex, 1);
+    newTickets[index].arrival = newArrival;
+    this.setState({ tickets: newTickets });
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -183,6 +232,7 @@ class Page extends PureComponent {
       images,
       companyName,
       type,
+      tickets,
     } = this.state;
     return (
       <div className="deal">
@@ -246,6 +296,12 @@ class Page extends PureComponent {
                 images={images}
                 onImageChange={this.onImageChange}
                 onImageDeleteClick={this.onImageDeleteClick}
+              />
+              <TicketsForm
+                tickets={tickets}
+                onTicketInputChange={this.onTicketInputChange}
+                onArrivalAddClick={this.onArrivalAddClick}
+                onArrivalRemoveClick={this.onArrivalRemoveClick}
               />
             </Col>
           </Row>
