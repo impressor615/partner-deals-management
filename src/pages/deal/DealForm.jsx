@@ -7,6 +7,7 @@ import {
 import DealButtons from './DealButtons';
 import PartnerForm from './PartnerForm';
 import NoticeForm from './NoticeForm';
+import ReservationForm from './ReservationPotintForm';
 
 
 const DealForm = ({
@@ -17,7 +18,11 @@ const DealForm = ({
   checkedBaggage,
   cancelFee,
   dayCancelFee,
+  reservationPoints,
   onChange,
+  onAddPointClick,
+  onPointChange,
+  onPointCbChange,
   onSubmit,
 }) => (
   <Form className="deal-form" onSubmit={onSubmit}>
@@ -42,6 +47,12 @@ const DealForm = ({
           dayCancelFee={dayCancelFee}
           onChange={onChange}
         />
+        <ReservationForm
+          points={reservationPoints}
+          onAddPointClick={onAddPointClick}
+          onPointChange={onPointChange}
+          onPointCbChange={onPointCbChange}
+        />
       </Col>
       <Col xs={2} />
       <Col xs={5}>
@@ -59,6 +70,7 @@ DealForm.defaultProps = {
   checkedBaggage: '',
   cancelFee: '',
   dayCancelFee: '',
+  reservationPoints: [],
 };
 
 DealForm.propTypes = {
@@ -69,8 +81,12 @@ DealForm.propTypes = {
   checkedBaggage: PropTypes.string,
   cancelFee: PropTypes.string,
   dayCancelFee: PropTypes.string,
+  reservationPoints: PropTypes.array,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onAddPointClick: PropTypes.func.isRequired,
+  onPointChange: PropTypes.func.isRequired,
+  onPointCbChange: PropTypes.func.isRequired,
 };
 
 export default DealForm;

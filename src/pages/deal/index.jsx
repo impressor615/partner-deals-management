@@ -27,6 +27,7 @@ class Page extends PureComponent {
     checkedBaggage: '',
     cancelFee: '',
     dayCancelFee: '',
+    reservationPoints: [{ text: '', active: true }],
   }
 
   async componentDidMount() {
@@ -58,6 +59,32 @@ class Page extends PureComponent {
     this.setState({ [id]: value });
   }
 
+  onAddPointClick = (e) => {
+    e.stopPropagation();
+    const { reservationPoints } = this.state;
+    const newPoints = [...reservationPoints];
+    newPoints.push({ text: '', active: true });
+    this.setState({ reservationPoints: newPoints });
+  }
+
+  onPointChange = index => (e) => {
+    e.stopPropagation();
+    const { value } = e.target;
+    const { reservationPoints } = this.state;
+    const newPoints = [...reservationPoints];
+    newPoints[index] = { ...newPoints[index], text: value };
+    this.setState({ reservationPoints: newPoints });
+  }
+
+  onPointCbChange = index => (e) => {
+    e.stopPropagation();
+    const { checked } = e.target;
+    const { reservationPoints } = this.state;
+    const newPoints = [...reservationPoints];
+    newPoints[index] = { ...newPoints[index], active: checked };
+    this.setState({ reservationPoints: newPoints });
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -72,6 +99,7 @@ class Page extends PureComponent {
       checkedBaggage,
       cancelFee,
       dayCancelFee,
+      reservationPoints,
     } = this.state;
     return (
       <div className="deal">
@@ -84,7 +112,11 @@ class Page extends PureComponent {
           checkedBaggage={checkedBaggage}
           cancelFee={cancelFee}
           dayCancelFee={dayCancelFee}
+          reservationPoints={reservationPoints}
           onChange={this.onChange}
+          onAddPointClick={this.onAddPointClick}
+          onPointChange={this.onPointChange}
+          onPointCbChange={this.onPointCbChange}
           onSubmit={this.onSubmit}
         />
       </div>

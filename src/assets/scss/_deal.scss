@@ -18,4 +18,14 @@
   .segment {
     margin-bottom: 50px;
   }
+
+  .reservation-point-form .reservation-point-checkbox-wrapper {
+    text-align: center;
+  }
+
+  .reservation-point-form
+  .reservation-point-checkbox-wrapper
+  input[type=checkbox] {
+    margin-right: 15px;
+  }
 }
