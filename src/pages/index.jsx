@@ -1,3 +1,5 @@
+import '@/assets/scss/main.scss';
+
 import React from 'react';
 import {
   HashRouter as Router, Route, Switch, Redirect,
