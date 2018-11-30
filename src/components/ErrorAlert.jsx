@@ -9,6 +9,19 @@ import { clearError } from '@/actions';
 
 
 class ErrorAlert extends PureComponent {
+  componentDidUpdate(prevProps) {
+    const { error, dispatch } = this.props;
+    if (!prevProps.error && error) {
+      this.clear = setTimeout(() => dispatch(clearError()), 2000);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.clear) {
+      clearTimeout(this.clear);
+    }
+  }
+
   onErrorClearClick = (e) => {
     e.stopPropagation();
     const { dispatch } = this.props;
