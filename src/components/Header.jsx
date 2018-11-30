@@ -17,9 +17,9 @@ export const HeaderNav = ({ items }) => (
     {
       items.map((item, index) => (
         index === 0
-          ? <div>{item}</div>
+          ? <div key={item}>{item}</div>
           : (
-            <div>
+            <div key={item}>
               <span>/</span>
               {item}
             </div>
