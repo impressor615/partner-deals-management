@@ -1,3 +1,5 @@
+import '@/assets/scss/_deal.scss';
+
 import React, { PureComponent } from 'react';
 import Promise from 'bluebird';
 import PropTypes from 'prop-types';
@@ -6,6 +8,8 @@ import { withRouter } from 'react-router-dom';
 
 import CONFIG from '@/config';
 import { getPartners, getDestinations, getDeal } from '@/actions';
+import { HEADER } from '@/viewmodels/deal';
+import Header from '@/components/Header';
 
 
 class Page extends PureComponent {
@@ -30,7 +34,9 @@ class Page extends PureComponent {
 
   render() {
     return (
-      <div>Page</div>
+      <div className="deal">
+        <Header title={HEADER.title} navItems={HEADER.nav_items} />
+      </div>
     );
   }
 }
