@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import CONFIG from '@/config';
 import { getDeals } from '@/actions';
 import Header from '@/components/Header';
+import Pagination from '@/components/Pagination';
 import { HEADER } from '@/viewmodels/deals';
 
 import DealSearch from './DealSearch';
@@ -34,6 +35,20 @@ class Page extends PureComponent {
     }
   }
 
+  async componentDidUpdate(prevProps) {
+    const { page, token, dispatch } = this.props;
+    if (prevProps.page === page) {
+      return;
+    }
+
+    const accessToken = token || sessionStorage.getItem(CONFIG.SESSION_KEY);
+    const data = {
+      token: accessToken,
+      queryString: `?page=${page}`,
+    };
+    await dispatch(getDeals(data));
+  }
+
   onChange = (e) => {
     e.stopPropagation();
     const { id, value } = e.target;
@@ -53,7 +68,9 @@ class Page extends PureComponent {
 
   render() {
     const { search } = this.state;
-    const { content } = this.props;
+    const {
+      content, first, last, totalPages, page,
+    } = this.props;
     return (
       <div className="deals">
         <div className="deals-navbar-wrapper">
@@ -69,6 +86,14 @@ class Page extends PureComponent {
         <div className="deals-table-wrapper">
           <DealTable items={content} onClick={this.onTableClick} />
         </div>
+        <div className="deals-pagination-wrapper">
+          <Pagination
+            currentPage={parseInt(page, 10)}
+            totalPages={totalPages}
+            first={first}
+            last={last}
+          />
+        </div>
       </div>
     );
   }
@@ -77,6 +102,9 @@ class Page extends PureComponent {
 Page.defaultProps = {
   token: '',
   content: [],
+  first: false,
+  last: true,
+  totalPages: 1,
 };
 
 Page.propTypes = {
@@ -84,6 +112,9 @@ Page.propTypes = {
   page: PropTypes.string.isRequired,
   token: PropTypes.string,
   content: PropTypes.array,
+  first: PropTypes.bool,
+  last: PropTypes.bool,
+  totalPages: PropTypes.number,
 };
 
 const mapStateToProps = (state, ownProps) => {

@@ -24,11 +24,17 @@
     font-size: 25px;
     font-weight: 500;
   }
+
+  .deals-pagination-wrapper {
+    padding: 0px 20px 0 20px;
+    margin-bottom: 50px;
+  }
 }
 
 @include media-breakpoint-up('lg') {
   .deals {
-    .deals-navbar-wrapper {
+    .deals-navbar-wrapper,
+    .deals-pagination-wrapper {
       padding-left: 50px;
       padding-right: 50px;
     }

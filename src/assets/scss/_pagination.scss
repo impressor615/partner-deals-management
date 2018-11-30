@@ -1,0 +1,16 @@
+.pagination {
+  .pagination-wrapper {
+    display: flex;
+    padding: 5px 10px;
+    border: 1px solid black;
+  }
+
+  .page-item.disabled {
+    cursor: not-allowed;
+  }
+
+  .page-link:active,
+  .page-link:focus {
+    box-shadow: none;
+  }
+}
