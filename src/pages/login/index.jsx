@@ -18,6 +18,14 @@ class Page extends PureComponent {
     password: '',
   };
 
+  componentDidMount() {
+    const { token, history } = this.props;
+    const accessToken = token || sessionStorage.getItem(CONFIG.SESSION_KEY);
+    if (accessToken) {
+      history.replace('/deals');
+    }
+  }
+
   onChange = (e) => {
     e.stopPropagation();
     const { id, value } = e.target;
@@ -66,10 +74,17 @@ class Page extends PureComponent {
   }
 }
 
+Page.defaultProps = {
+  token: '',
+};
+
 Page.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  token: PropTypes.string,
 };
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  token: state.user.access_token,
+});
 export default withRouter(connect(mapStateToProps)(Page));
