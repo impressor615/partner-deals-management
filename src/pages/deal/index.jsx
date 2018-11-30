@@ -19,6 +19,11 @@ import DealForm from './DealForm';
 
 
 class Page extends PureComponent {
+  state = {
+    title: '',
+    adCompany: '',
+  }
+
   async componentDidMount() {
     const {
       token, dispatch, history, match,
@@ -34,6 +39,18 @@ class Page extends PureComponent {
     if (result.error) {
       history.replace('/login');
     }
+
+    const { title, adCompany } = result.payload;
+    this.setState({
+      title,
+      adCompany: adCompany.name ? adCompany.name : '',
+    });
+  }
+
+  onChange = (e) => {
+    e.stopPropagation();
+    const { id, value } = e.target;
+    this.setState({ [id]: value });
   }
 
   onSubmit = (e) => {
@@ -42,10 +59,16 @@ class Page extends PureComponent {
   }
 
   render() {
+    const { title, adCompany } = this.state;
     return (
       <div className="deal">
         <Header title={HEADER.title} navItems={HEADER.nav_items} />
-        <DealForm onSubmit={this.onSubmit} />
+        <DealForm
+          title={title}
+          adCompany={adCompany}
+          onChange={this.onChange}
+          onSubmit={this.onSubmit}
+        />
       </div>
     );
   }
@@ -64,5 +87,6 @@ Page.propTypes = {
 
 const mapStateToProps = state => ({
   token: state.user.access_token,
+  ...state.deals.deal,
 });
 export default withRouter(connect(mapStateToProps)(Page));
