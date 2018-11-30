@@ -27,6 +27,7 @@ import DealButtons from './DealButtons';
 import PartnerForm from './PartnerForm';
 import NoticeForm from './NoticeForm';
 import ReservationForm from './ReservationPotintForm';
+import ReservationPointTextForm from './ReservationPointTextForm';
 
 
 class Page extends PureComponent {
@@ -39,6 +40,7 @@ class Page extends PureComponent {
     cancelFee: '',
     dayCancelFee: '',
     reservationPoints: [{ text: '', active: true }],
+    reservationPointText: '',
   }
 
   async componentDidMount() {
@@ -111,6 +113,7 @@ class Page extends PureComponent {
       cancelFee,
       dayCancelFee,
       reservationPoints,
+      reservationPointText,
     } = this.state;
     return (
       <div className="deal">
@@ -142,6 +145,10 @@ class Page extends PureComponent {
                 onAddPointClick={this.onAddPointClick}
                 onPointChange={this.onPointChange}
                 onPointCbChange={this.onPointCbChange}
+              />
+              <ReservationPointTextForm
+                pointText={reservationPointText}
+                onChange={this.onChange}
               />
             </Col>
             <Col xs={2} />

@@ -28,4 +28,10 @@
   input[type=checkbox] {
     margin-right: 15px;
   }
+
+  .reservation-point-text-form textarea {
+    width: 100%;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 20px;
+  }
 }
