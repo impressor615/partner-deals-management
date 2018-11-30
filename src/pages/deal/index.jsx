@@ -29,6 +29,7 @@ import NoticeForm from './NoticeForm';
 import ReservationPointForm from './ReservationPotintForm';
 import ReservationPointTextForm from './ReservationPointTextForm';
 import DealDateForm from './DealDateForm';
+import AlignIndexForm from './AlignIndexForm';
 
 
 class Page extends PureComponent {
@@ -49,6 +50,8 @@ class Page extends PureComponent {
     dealOpenDate: '',
     dealEndDate: '',
     dealURL: '',
+    weight: 50,
+    score: 50,
   }
 
   async componentDidMount() {
@@ -129,6 +132,8 @@ class Page extends PureComponent {
       dealOpenDate,
       dealEndDate,
       dealURL,
+      weight,
+      score,
     } = this.state;
     return (
       <div className="deal">
@@ -173,6 +178,11 @@ class Page extends PureComponent {
                 dealOpenDate={dealOpenDate}
                 dealEndDate={dealEndDate}
                 dealURL={dealURL}
+                onChange={this.onChange}
+              />
+              <AlignIndexForm
+                weight={weight}
+                score={score}
                 onChange={this.onChange}
               />
             </Col>
