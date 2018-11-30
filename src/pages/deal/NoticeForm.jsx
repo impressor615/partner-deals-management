@@ -8,7 +8,7 @@ import Segment from '@/components/Segment';
 
 
 const NoticeForm = ({
-  message, baggage, checkedBaggage, cancelFee, dayCancelFee, onChange,
+  message, cabinBaggage, referralBaggage, cancelFee, theDayCancelFee, onChange,
 }) => (
   <Segment title="유의사항">
     <FormGroup row>
@@ -27,8 +27,8 @@ const NoticeForm = ({
       <Col xs={9}>
         <Input
           type="text"
-          id="baggage"
-          value={baggage}
+          id="cabinBaggage"
+          value={cabinBaggage}
           onChange={onChange}
         />
       </Col>
@@ -38,14 +38,14 @@ const NoticeForm = ({
       <Col xs={9}>
         <Input
           type="text"
-          id="checkedBaggage"
-          value={checkedBaggage}
+          id="referralBaggage"
+          value={referralBaggage}
           onChange={onChange}
         />
       </Col>
     </FormGroup>
     <FormGroup row>
-      <Label xs={3}>취소 수수로</Label>
+      <Label xs={3}>취소 수수료</Label>
       <Col xs={9}>
         <Input
           type="text"
@@ -60,8 +60,8 @@ const NoticeForm = ({
       <Col xs={9}>
         <Input
           type="text"
-          id="dayCancelFee"
-          value={dayCancelFee}
+          id="theDayCancelFee"
+          value={theDayCancelFee}
           onChange={onChange}
         />
       </Col>
@@ -71,18 +71,18 @@ const NoticeForm = ({
 
 NoticeForm.defaultProps = {
   message: '',
-  baggage: '',
-  checkedBaggage: '',
+  cabinBaggage: '',
+  referralBaggage: '',
   cancelFee: '',
-  dayCancelFee: '',
+  theDayCancelFee: '',
 };
 
 NoticeForm.propTypes = {
   message: PropTypes.string,
-  baggage: PropTypes.string,
-  checkedBaggage: PropTypes.string,
+  cabinBaggage: PropTypes.string,
+  referralBaggage: PropTypes.string,
   cancelFee: PropTypes.string,
-  dayCancelFee: PropTypes.string,
+  theDayCancelFee: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 

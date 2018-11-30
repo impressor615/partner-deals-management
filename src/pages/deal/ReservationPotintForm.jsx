@@ -30,12 +30,13 @@ const ReservationPointForm = ({
         <FormGroup row key={index.toString()}>
           <Col xs={3} className="reservation-point-checkbox-wrapper">
             <Input
+              id={`deal-points-${index}`}
               addon
               type="checkbox"
               onChange={onPointCbChange(index)}
               checked={point.active}
             />
-            <Label>내용표시</Label>
+            <Label htmlFor={`deal-points-${index}`}>내용표시</Label>
           </Col>
           <Col xs={9}>
             <Input

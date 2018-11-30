@@ -6,7 +6,7 @@ import Segment from '@/components/Segment';
 
 
 const ReservationPointTextForm = ({
-  pointText,
+  info,
   onChange,
 }) => (
   <Segment
@@ -17,8 +17,8 @@ const ReservationPointTextForm = ({
       <textarea
         rows={10}
         onChange={onChange}
-        value={pointText}
-        id="reservationPointText"
+        value={info}
+        id="info"
         placeholder="예매 Point 입력"
       />
     </FormGroup>
@@ -26,11 +26,11 @@ const ReservationPointTextForm = ({
 );
 
 ReservationPointTextForm.defaultProps = {
-  pointText: '',
+  info: '',
 };
 
 ReservationPointTextForm.propTypes = {
-  pointText: PropTypes.string,
+  info: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 

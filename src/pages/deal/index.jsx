@@ -26,7 +26,7 @@ import Header from '@/components/Header';
 import DealButtons from './DealButtons';
 import PartnerForm from './PartnerForm';
 import NoticeForm from './NoticeForm';
-import ReservationForm from './ReservationPotintForm';
+import ReservationPointForm from './ReservationPotintForm';
 import ReservationPointTextForm from './ReservationPointTextForm';
 import DealDateForm from './DealDateForm';
 
@@ -36,12 +36,12 @@ class Page extends PureComponent {
     title: '',
     adCompany: '',
     message: '',
-    baggage: '',
-    checkedBaggage: '',
+    cabinBaggage: '',
+    referralBaggage: '',
     cancelFee: '',
-    dayCancelFee: '',
-    reservationPoints: [{ text: '', active: true }],
-    reservationPointText: '',
+    theDayCancelFee: '',
+    dealPoints: [{ text: '', active: true }],
+    info: '',
     openDate: '',
     openTime: '',
     saleOpenDate: '',
@@ -82,28 +82,28 @@ class Page extends PureComponent {
 
   onAddPointClick = (e) => {
     e.stopPropagation();
-    const { reservationPoints } = this.state;
-    const newPoints = [...reservationPoints];
+    const { dealPoints } = this.state;
+    const newPoints = [...dealPoints];
     newPoints.push({ text: '', active: true });
-    this.setState({ reservationPoints: newPoints });
+    this.setState({ dealPoints: newPoints });
   }
 
   onPointChange = index => (e) => {
     e.stopPropagation();
     const { value } = e.target;
-    const { reservationPoints } = this.state;
-    const newPoints = [...reservationPoints];
+    const { dealPoints } = this.state;
+    const newPoints = [...dealPoints];
     newPoints[index] = { ...newPoints[index], text: value };
-    this.setState({ reservationPoints: newPoints });
+    this.setState({ dealPoints: newPoints });
   }
 
   onPointCbChange = index => (e) => {
     e.stopPropagation();
     const { checked } = e.target;
-    const { reservationPoints } = this.state;
-    const newPoints = [...reservationPoints];
+    const { dealPoints } = this.state;
+    const newPoints = [...dealPoints];
     newPoints[index] = { ...newPoints[index], active: checked };
-    this.setState({ reservationPoints: newPoints });
+    this.setState({ dealPoints: newPoints });
   }
 
   onSubmit = (e) => {
@@ -116,12 +116,12 @@ class Page extends PureComponent {
       title,
       adCompany,
       message,
-      baggage,
-      checkedBaggage,
+      cabinBaggage,
+      referralBaggage,
       cancelFee,
-      dayCancelFee,
-      reservationPoints,
-      reservationPointText,
+      theDayCancelFee,
+      dealPoints,
+      info,
       openDate,
       openTime,
       saleOpenDate,
@@ -149,20 +149,20 @@ class Page extends PureComponent {
               <PartnerForm onChange={this.onChange} adCompany={adCompany} />
               <NoticeForm
                 message={message}
-                baggage={baggage}
-                checkedBaggage={checkedBaggage}
+                cabinBaggage={cabinBaggage}
+                referralBaggage={referralBaggage}
                 cancelFee={cancelFee}
-                dayCancelFee={dayCancelFee}
+                theDayCancelFee={theDayCancelFee}
                 onChange={this.onChange}
               />
-              <ReservationForm
-                points={reservationPoints}
+              <ReservationPointForm
+                points={dealPoints}
                 onAddPointClick={this.onAddPointClick}
                 onPointChange={this.onPointChange}
                 onPointCbChange={this.onPointCbChange}
               />
               <ReservationPointTextForm
-                pointText={reservationPointText}
+                info={info}
                 onChange={this.onChange}
               />
               <DealDateForm
