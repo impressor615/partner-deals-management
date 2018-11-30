@@ -1,0 +1,11 @@
+.file-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  background: #6c757d;
+  color: white;
+  border-radius: 0.25rem;
+
+  input[type=file] {
+    display: none;
+  }
+}
