@@ -1,7 +1,6 @@
 import '@/assets/scss/_deal.scss';
 
 import React, { PureComponent } from 'react';
-import Promise from 'bluebird';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -15,7 +14,7 @@ import Header from '@/components/Header';
 
 
 class Page extends PureComponent {
-  componentDidMount() {
+  async componentDidMount() {
     const {
       token, dispatch, history, match,
     } = this.props;
@@ -23,16 +22,13 @@ class Page extends PureComponent {
     const data = { token: accessToken };
 
     dispatch(setLoading(true));
-    return Promise.props({
-      partner: dispatch(getPartners(data)),
-      destinations: dispatch(getDestinations(data)),
-      deal: dispatch(getDeal({ ...data, id: match.params.id })),
-    }).then(({ deal }) => {
-      dispatch(setLoading(false));
-      if (deal.error) {
-        history.replace('/login');
-      }
-    });
+    await dispatch(getPartners(data));
+    await dispatch(getDestinations(data));
+    const result = await dispatch(getDeal({ ...data, id: match.params.id }));
+    dispatch(setLoading(false));
+    if (result.error) {
+      history.replace('/login');
+    }
   }
 
 
