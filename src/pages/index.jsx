@@ -1,5 +1,7 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  HashRouter as Router, Route, Switch, Redirect,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import AppContainer from '@/components/AppContainer';
@@ -20,6 +22,7 @@ const App = () => (
           <Switch>
             <Route exact path="/deals" component={Deals} />
             <Route exact path="/login" component={Login} />
+            <Redirect to="/login" />
           </Switch>
         </ScrollToTop>
       </AppContainer>
