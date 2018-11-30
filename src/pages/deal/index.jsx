@@ -1,4 +1,4 @@
-import '@/assets/scss/_deal.scss';
+import '@/assets/scss/pages/_deal.scss';
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -204,6 +204,7 @@ class Page extends PureComponent {
     this.setState({ tickets: newTickets });
   }
 
+  // TODO: 딜 생성/수정 action 연결 필요
   onSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
