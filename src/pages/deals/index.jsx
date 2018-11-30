@@ -32,9 +32,9 @@ class Page extends PureComponent {
     dispatch(setLoading(true));
     const result = await dispatch(getDeals(data));
     if (result.error) {
-      dispatch(setLoading(false));
       history.replace('/login');
     }
+    dispatch(setLoading(false));
   }
 
   async componentDidUpdate(prevProps) {
