@@ -22,6 +22,7 @@ import {
 } from '@/actions';
 import { HEADER } from '@/viewmodels/deal';
 import Header from '@/components/Header';
+import { readAsDataURL } from '@/utils/fileUtils';
 
 import DealButtons from './DealButtons';
 import PartnerForm from './PartnerForm';
@@ -30,6 +31,7 @@ import ReservationPointForm from './ReservationPotintForm';
 import ReservationPointTextForm from './ReservationPointTextForm';
 import DealDateForm from './DealDateForm';
 import AlignIndexForm from './AlignIndexForm';
+import ImageForm from './ImageForm';
 
 
 class Page extends PureComponent {
@@ -52,6 +54,7 @@ class Page extends PureComponent {
     dealURL: '',
     weight: 50,
     score: 50,
+    images: [],
   }
 
   async componentDidMount() {
@@ -109,6 +112,28 @@ class Page extends PureComponent {
     this.setState({ dealPoints: newPoints });
   }
 
+  onImageChange = async (e) => {
+    e.stopPropagation();
+    const { dispatch } = this.props;
+    const file = e.target.files[0];
+    dispatch(setLoading(true));
+    const dataURL = await readAsDataURL(file);
+    dispatch(setLoading(false));
+    const { images } = this.state;
+    const newImages = [...images];
+    newImages.push({ file, dataURL });
+
+    this.setState({ images: newImages });
+  }
+
+  onImageDeleteClick = index => (e) => {
+    e.stopPropagation();
+    const { images } = this.state;
+    const newImages = [...images];
+    newImages.splice(index, 1);
+    this.setState({ images: newImages });
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -134,6 +159,7 @@ class Page extends PureComponent {
       dealURL,
       weight,
       score,
+      images,
     } = this.state;
     return (
       <div className="deal">
@@ -188,7 +214,11 @@ class Page extends PureComponent {
             </Col>
             <Col xs={2} />
             <Col xs={5}>
-              right side
+              <ImageForm
+                images={images}
+                onImageChange={this.onImageChange}
+                onImageDeleteClick={this.onImageDeleteClick}
+              />
             </Col>
           </Row>
         </Form>

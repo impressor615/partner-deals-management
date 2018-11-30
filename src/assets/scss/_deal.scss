@@ -48,4 +48,34 @@
   .deal-url-input-wrapper button {
     width: 20%;
   }
+
+  .deal-image-form-button-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .deal-image-form-button-wrapper label {
+    margin-right: 15px;
+  }
+
+  .deal-image-form-button-wrapper span {
+    font-weight: bold;
+  }
+
+  .deal-image-form .image-segment {
+    padding: 8px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+
+  .deal-image-form .image-segment img {
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
+    object-fit: contain;
+  }
+
+  .deal-image-form-img-wrapper button {
+    width: 100%;
+    height: 100%;
+  }
 }
