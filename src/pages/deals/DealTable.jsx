@@ -6,7 +6,7 @@ import { TABLE } from '@/viewmodels/deals';
 
 
 const DealTable = ({ items, onClick }) => (
-  <Table responsive hover>
+  <Table hover>
     <thead>
       <tr>
         {

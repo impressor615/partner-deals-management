@@ -11,8 +11,8 @@ const DealSearch = ({
   <div className="deals-search">
     <Form onSubmit={onSubmit}>
       <FormGroup row>
-        <Label xs={12} lg={2}>Deal Search</Label>
-        <Col xs={9} lg={6}>
+        <Label xs={2}>Deal Search</Label>
+        <Col xs={6}>
           <Input
             id={id}
             value={value}
@@ -21,7 +21,7 @@ const DealSearch = ({
             placeholder="Deal ID or Title or 여행사/항공사 or Type"
           />
         </Col>
-        <Col xs={3} lg={3}>
+        <Col xs={3}>
           <Button type="submit">검색</Button>
         </Col>
       </FormGroup>
