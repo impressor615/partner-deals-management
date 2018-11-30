@@ -8,21 +8,24 @@ export const initialState = {
 };
 
 export default function (state = initialState, action) {
-  if (/^REQ[_A-Z]+[^SUCCESS|FAILURE]$/.test(action.type)) {
+  const isRequest = action.type.includes('REQ');
+  const success = action.type.includes('SUCCESS');
+  const failure = action.type.includes('FAILURE');
+  if (isRequest && !success && !failure) {
     return {
       ...state,
       loading: true,
     };
   }
 
-  if (/^REQ[_A-Z]+_SUCCESS$/.test(action.type)) {
+  if (isRequest && success) {
     return {
       ...state,
       loading: false,
     };
   }
 
-  if (/^REQ[_A-Z]+_FAILURE$/.test(action.type)) {
+  if (isRequest && failure) {
     return {
       ...state,
       loading: false,
