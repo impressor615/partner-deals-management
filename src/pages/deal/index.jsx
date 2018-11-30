@@ -22,6 +22,11 @@ class Page extends PureComponent {
   state = {
     title: '',
     adCompany: '',
+    message: '',
+    baggage: '',
+    checkedBaggage: '',
+    cancelFee: '',
+    dayCancelFee: '',
   }
 
   async componentDidMount() {
@@ -59,13 +64,26 @@ class Page extends PureComponent {
   }
 
   render() {
-    const { title, adCompany } = this.state;
+    const {
+      title,
+      adCompany,
+      message,
+      baggage,
+      checkedBaggage,
+      cancelFee,
+      dayCancelFee,
+    } = this.state;
     return (
       <div className="deal">
         <Header title={HEADER.title} navItems={HEADER.nav_items} />
         <DealForm
           title={title}
           adCompany={adCompany}
+          message={message}
+          baggage={baggage}
+          checkedBaggage={checkedBaggage}
+          cancelFee={cancelFee}
+          dayCancelFee={dayCancelFee}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
         />
