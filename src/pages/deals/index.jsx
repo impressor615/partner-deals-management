@@ -73,16 +73,18 @@ class Page extends PureComponent {
     } = this.props;
     return (
       <div className="deals">
-        <div className="deals-navbar-wrapper">
-          <Header title={HEADER.title} navItems={HEADER.nav_item} />
-          <DealSearch
-            id="search"
-            value={search}
-            onChange={this.onChange}
-            onSubmit={this.onSubmit}
-          />
+        <div className="deals-fixed-container">
+          <div className="deals-navbar-wrapper">
+            <Header title={HEADER.title} navItems={HEADER.nav_item} />
+            <DealSearch
+              id="search"
+              value={search}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+            />
+          </div>
+          <hr />
         </div>
-        <hr />
         <div className="deals-table-wrapper">
           <DealTable items={content} onClick={this.onTableClick} />
         </div>
