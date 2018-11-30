@@ -55,8 +55,11 @@ class Page extends PureComponent {
     weight: 50,
     score: 50,
     images: [],
+    companyName: '',
+    type: '',
   }
 
+  // TODO: getPartner access_denied 에러가 남
   async componentDidMount() {
     const {
       token, dispatch, history, match,
@@ -73,10 +76,28 @@ class Page extends PureComponent {
       history.replace('/login');
     }
 
-    const { title, adCompany } = result.payload;
+    const {
+      title,
+      adCompany,
+      info,
+      url,
+      dealOption,
+      weight,
+      company,
+      type,
+    } = result.payload;
     this.setState({
       title,
+      info,
+      dealURL: url,
+      cabinBaggage: dealOption.cabinBaggage ? dealOption.cabinBaggage : '',
+      cancelFee: dealOption.cancelFee ? dealOption.cancelFee : '',
+      theDayCancelFee: dealOption.theDayCancelFee ? dealOption.theDayCancelFee : '',
+      referralBaggage: dealOption.referralBaggage ? dealOption.referralBaggage : '',
       adCompany: adCompany.name ? adCompany.name : '',
+      weight: weight || 50,
+      type,
+      companyName: company.name ? company.name : '',
     });
   }
 
@@ -160,6 +181,8 @@ class Page extends PureComponent {
       weight,
       score,
       images,
+      companyName,
+      type,
     } = this.state;
     return (
       <div className="deal">
@@ -177,7 +200,12 @@ class Page extends PureComponent {
                   onChange={this.onChange}
                 />
               </FormGroup>
-              <PartnerForm onChange={this.onChange} adCompany={adCompany} />
+              <PartnerForm
+                type={type}
+                companyName={companyName}
+                adCompany={adCompany}
+                onChange={this.onChange}
+              />
               <NoticeForm
                 message={message}
                 cabinBaggage={cabinBaggage}
