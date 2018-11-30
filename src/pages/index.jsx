@@ -12,6 +12,7 @@ import configureStore from '@/configureStore';
 
 import Login from './login';
 import Deals from './deals';
+import Deal from './deal';
 
 
 const store = configureStore();
@@ -23,6 +24,7 @@ const App = () => (
         <ScrollToTop>
           <Switch>
             <Route exact path="/deals" component={Deals} />
+            <Route exact path="/deals/:id" component={Deal} />
             <Route exact path="/login" component={Login} />
             <Redirect to="/login" />
           </Switch>

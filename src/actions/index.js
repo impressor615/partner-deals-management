@@ -9,4 +9,7 @@ export {
 
 export {
   getDeals,
+  getPartners,
+  getDestinations,
+  getDeal,
 } from './deals';
