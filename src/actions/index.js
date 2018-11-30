@@ -6,3 +6,7 @@ export {
 export {
   clearError,
 } from './commonUI';
+
+export {
+  getDeals,
+} from './deals';

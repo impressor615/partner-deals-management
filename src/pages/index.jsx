@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 
 import AppContainer from '@/components/AppContainer';
 import ScrollToTop from '@/components/ScrollToTop';
-import Hello from '@/components/Hello';
 import configureStore from '@/configureStore';
 
 import Login from './login';
+import Deals from './deals';
 
 
 const store = configureStore();
@@ -18,7 +18,7 @@ const App = () => (
       <AppContainer>
         <ScrollToTop>
           <Switch>
-            <Route exact path="/" component={Hello} />
+            <Route exact path="/deals" component={Deals} />
             <Route exact path="/login" component={Login} />
           </Switch>
         </ScrollToTop>

@@ -42,7 +42,7 @@ class Page extends PureComponent {
       CONFIG.SESSION_KEY,
       result.payload.access_token,
     );
-    history.push('/');
+    history.push('/deals');
   }
 
   render() {

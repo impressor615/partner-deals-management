@@ -6,3 +6,8 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 
 // commonUI actions
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+
+// deal actions
+export const REQ_GET_DEALS = 'REQ_GET_DEALS';
+export const REQ_GET_DEALS_SUCCESS = 'REQ_GET_DEALS_SUCCESS';
+export const REQ_GET_DEALS_FAILURE = 'REQ_GET_DEALS_FAILURE';

@@ -1,13 +1,16 @@
 import { combineReducers } from 'redux';
 import user, { initialState as userState } from './user';
 import commonUI, { initialState as commonUIState } from './commonUI';
+import deals, { initialState as dealsState } from './deals';
 
 export default combineReducers({
   user,
   commonUI,
+  deals,
 });
 
 export const initialState = {
   user: userState,
   commonUI: commonUIState,
+  deals: dealsState,
 };
