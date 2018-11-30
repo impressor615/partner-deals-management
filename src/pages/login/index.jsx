@@ -45,8 +45,8 @@ class Page extends PureComponent {
 
     dispatch(setLoading(true));
     const result = await dispatch(login(data));
-    if (result.error) return;
     dispatch(setLoading(false));
+    if (result.error) return;
 
     sessionStorage.setItem(
       CONFIG.SESSION_KEY,
