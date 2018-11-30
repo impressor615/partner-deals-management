@@ -1,0 +1,19 @@
+.segment {
+  .segment-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .segment-actions-wrapper {
+    margin: -5px;
+  }
+
+  .segment-actions-wrapper > * {
+    margin-right: 5px;
+  }
+
+  label {
+    font-weight: 500;
+  }
+}
