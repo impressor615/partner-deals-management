@@ -1,5 +1,8 @@
 html, body, #app, .app-container {
   height: 100%;
+
+  min-width: 1140px;
+  overflow-x: hidden;
 }
 
 table.table-hover tbody tr {
