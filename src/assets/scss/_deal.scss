@@ -34,4 +34,18 @@
     border: 1px solid rgb(221, 221, 221);
     padding: 20px;
   }
+
+  .deal-url-input-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .deal-url-input-wrapper input {
+    display: inline-block;
+    width: 75%;
+  }
+
+  .deal-url-input-wrapper button {
+    width: 20%;
+  }
 }

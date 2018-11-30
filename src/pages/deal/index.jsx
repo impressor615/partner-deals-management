@@ -28,6 +28,7 @@ import PartnerForm from './PartnerForm';
 import NoticeForm from './NoticeForm';
 import ReservationForm from './ReservationPotintForm';
 import ReservationPointTextForm from './ReservationPointTextForm';
+import DealDateForm from './DealDateForm';
 
 
 class Page extends PureComponent {
@@ -41,6 +42,13 @@ class Page extends PureComponent {
     dayCancelFee: '',
     reservationPoints: [{ text: '', active: true }],
     reservationPointText: '',
+    openDate: '',
+    openTime: '',
+    saleOpenDate: '',
+    saleEndDate: '',
+    dealOpenDate: '',
+    dealEndDate: '',
+    dealURL: '',
   }
 
   async componentDidMount() {
@@ -114,6 +122,13 @@ class Page extends PureComponent {
       dayCancelFee,
       reservationPoints,
       reservationPointText,
+      openDate,
+      openTime,
+      saleOpenDate,
+      saleEndDate,
+      dealOpenDate,
+      dealEndDate,
+      dealURL,
     } = this.state;
     return (
       <div className="deal">
@@ -148,6 +163,16 @@ class Page extends PureComponent {
               />
               <ReservationPointTextForm
                 pointText={reservationPointText}
+                onChange={this.onChange}
+              />
+              <DealDateForm
+                openDate={openDate}
+                openTime={openTime}
+                saleOpenDate={saleOpenDate}
+                saleEndDate={saleEndDate}
+                dealOpenDate={dealOpenDate}
+                dealEndDate={dealEndDate}
+                dealURL={dealURL}
                 onChange={this.onChange}
               />
             </Col>
