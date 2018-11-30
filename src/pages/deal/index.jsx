@@ -4,6 +4,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import {
+  Form,
+  FormGroup,
+  Input,
+  Row,
+  Col,
+  Label,
+} from 'reactstrap';
 
 import CONFIG from '@/config';
 import {
@@ -15,7 +23,10 @@ import {
 import { HEADER } from '@/viewmodels/deal';
 import Header from '@/components/Header';
 
-import DealForm from './DealForm';
+import DealButtons from './DealButtons';
+import PartnerForm from './PartnerForm';
+import NoticeForm from './NoticeForm';
+import ReservationForm from './ReservationPotintForm';
 
 
 class Page extends PureComponent {
@@ -104,21 +115,41 @@ class Page extends PureComponent {
     return (
       <div className="deal">
         <Header title={HEADER.title} navItems={HEADER.nav_items} />
-        <DealForm
-          title={title}
-          adCompany={adCompany}
-          message={message}
-          baggage={baggage}
-          checkedBaggage={checkedBaggage}
-          cancelFee={cancelFee}
-          dayCancelFee={dayCancelFee}
-          reservationPoints={reservationPoints}
-          onChange={this.onChange}
-          onAddPointClick={this.onAddPointClick}
-          onPointChange={this.onPointChange}
-          onPointCbChange={this.onPointCbChange}
-          onSubmit={this.onSubmit}
-        />
+        <Form className="deal-form" onSubmit={this.onSubmit}>
+          <DealButtons />
+          <Row>
+            <Col xs={5}>
+              <FormGroup className="deal-title-form">
+                <Label>제목</Label>
+                <Input
+                  type="text"
+                  id="title"
+                  value={title}
+                  onChange={this.onChange}
+                />
+              </FormGroup>
+              <PartnerForm onChange={this.onChange} adCompany={adCompany} />
+              <NoticeForm
+                message={message}
+                baggage={baggage}
+                checkedBaggage={checkedBaggage}
+                cancelFee={cancelFee}
+                dayCancelFee={dayCancelFee}
+                onChange={this.onChange}
+              />
+              <ReservationForm
+                points={reservationPoints}
+                onAddPointClick={this.onAddPointClick}
+                onPointChange={this.onPointChange}
+                onPointCbChange={this.onPointCbChange}
+              />
+            </Col>
+            <Col xs={2} />
+            <Col xs={5}>
+              right side
+            </Col>
+          </Row>
+        </Form>
       </div>
     );
   }
