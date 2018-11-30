@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import CONFIG from '@/config';
-import { getDeals } from '@/actions';
+import { getDeals, setLoading } from '@/actions';
 import Header from '@/components/Header';
 import Pagination from '@/components/Pagination';
 import { HEADER } from '@/viewmodels/deals';
@@ -29,8 +29,10 @@ class Page extends PureComponent {
       token: accessToken,
       queryString: `?page=${page}`,
     };
+    dispatch(setLoading(true));
     const result = await dispatch(getDeals(data));
     if (result.error) {
+      dispatch(setLoading(false));
       history.replace('/login');
     }
   }
@@ -46,7 +48,9 @@ class Page extends PureComponent {
       token: accessToken,
       queryString: `?page=${page}`,
     };
+    dispatch(setLoading(true));
     await dispatch(getDeals(data));
+    dispatch(setLoading(false));
   }
 
   onChange = (e) => {

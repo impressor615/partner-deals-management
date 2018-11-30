@@ -1,5 +1,6 @@
 import {
   CLEAR_ERROR,
+  SET_LOADING,
 } from '@/viewmodels/actionTypes';
 
 export const initialState = {
@@ -8,36 +9,16 @@ export const initialState = {
 };
 
 export default function (state = initialState, action) {
-  const isRequest = action.type.includes('REQ');
-  const success = action.type.includes('SUCCESS');
-  const failure = action.type.includes('FAILURE');
-  if (isRequest && !success && !failure) {
-    return {
-      ...state,
-      loading: true,
-    };
-  }
-
-  if (isRequest && success) {
-    return {
-      ...state,
-      loading: false,
-    };
-  }
-
-  if (isRequest && failure) {
-    return {
-      ...state,
-      loading: false,
-      error: action.payload.message,
-    };
-  }
-
   switch (action.type) {
     case CLEAR_ERROR:
       return {
         ...state,
         error: '',
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.loading,
       };
     default:
       return state;

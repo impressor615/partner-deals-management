@@ -5,6 +5,7 @@ export {
 
 export {
   clearError,
+  setLoading,
 } from './commonUI';
 
 export {

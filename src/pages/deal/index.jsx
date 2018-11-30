@@ -7,7 +7,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import CONFIG from '@/config';
-import { getPartners, getDestinations, getDeal } from '@/actions';
+import {
+  getPartners, getDestinations, getDeal, setLoading,
+} from '@/actions';
 import { HEADER } from '@/viewmodels/deal';
 import Header from '@/components/Header';
 
@@ -20,11 +22,13 @@ class Page extends PureComponent {
     const accessToken = token || sessionStorage.getItem(CONFIG.SESSION_KEY);
     const data = { token: accessToken };
 
+    dispatch(setLoading(true));
     return Promise.props({
       partner: dispatch(getPartners(data)),
       destinations: dispatch(getDestinations(data)),
       deal: dispatch(getDeal({ ...data, id: match.params.id })),
     }).then(({ deal }) => {
+      dispatch(setLoading(false));
       if (deal.error) {
         history.replace('/login');
       }
