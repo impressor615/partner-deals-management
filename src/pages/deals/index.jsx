@@ -11,6 +11,7 @@ import Header from '@/components/Header';
 import { HEADER } from '@/viewmodels/deals';
 
 import DealSearch from './DealSearch';
+import DealTable from './DealTable';
 
 
 class Page extends PureComponent {
@@ -39,6 +40,12 @@ class Page extends PureComponent {
     this.setState({ [id]: value });
   }
 
+  onTableClick = dealId => (e) => {
+    e.stopPropagation();
+    const { history } = this.props;
+    history.push(`/deals/${dealId}`);
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -46,6 +53,7 @@ class Page extends PureComponent {
 
   render() {
     const { search } = this.state;
+    const { content } = this.props;
     return (
       <div className="deals">
         <div className="deals-navbar-wrapper">
@@ -57,6 +65,10 @@ class Page extends PureComponent {
             onSubmit={this.onSubmit}
           />
         </div>
+        <hr />
+        <div className="deals-table-wrapper">
+          <DealTable items={content} onClick={this.onTableClick} />
+        </div>
       </div>
     );
   }
@@ -64,12 +76,14 @@ class Page extends PureComponent {
 
 Page.defaultProps = {
   token: '',
+  content: [],
 };
 
 Page.propTypes = {
   history: PropTypes.object.isRequired,
   page: PropTypes.string.isRequired,
   token: PropTypes.string,
+  content: PropTypes.array,
 };
 
 const mapStateToProps = (state, ownProps) => {

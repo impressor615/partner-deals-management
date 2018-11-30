@@ -1,3 +1,7 @@
 html, body, #app, .app-container {
   height: 100%;
 }
+
+table.table-hover tbody tr {
+  cursor: pointer;
+}
