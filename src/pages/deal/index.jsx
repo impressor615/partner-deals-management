@@ -7,10 +7,15 @@ import { withRouter } from 'react-router-dom';
 
 import CONFIG from '@/config';
 import {
-  getPartners, getDestinations, getDeal, setLoading,
+  // getPartners,
+  // getDestinations,
+  getDeal,
+  setLoading,
 } from '@/actions';
 import { HEADER } from '@/viewmodels/deal';
 import Header from '@/components/Header';
+
+import DealForm from './DealForm';
 
 
 class Page extends PureComponent {
@@ -22,8 +27,8 @@ class Page extends PureComponent {
     const data = { token: accessToken };
 
     dispatch(setLoading(true));
-    await dispatch(getPartners(data));
-    await dispatch(getDestinations(data));
+    // await dispatch(getPartners(data));
+    // await dispatch(getDestinations(data));
     const result = await dispatch(getDeal({ ...data, id: match.params.id }));
     dispatch(setLoading(false));
     if (result.error) {
@@ -31,11 +36,16 @@ class Page extends PureComponent {
     }
   }
 
+  onSubmit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }
 
   render() {
     return (
       <div className="deal">
         <Header title={HEADER.title} navItems={HEADER.nav_items} />
+        <DealForm onSubmit={this.onSubmit} />
       </div>
     );
   }
