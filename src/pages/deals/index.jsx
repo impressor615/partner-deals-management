@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import CONFIG from '@/config';
 import { getDeals } from '@/actions';
 import Header from '@/components/Header';
+import { HEADER } from '@/viewmodels/deals';
 
 
 class Page extends PureComponent {
@@ -27,10 +28,7 @@ class Page extends PureComponent {
   render() {
     return (
       <div className="home">
-        <Header
-          title="Deal List"
-          navItems={['Home', 'Deal', 'Deal List']}
-        />
+        <Header title={HEADER.title} navItems={HEADER.nav_item} />
       </div>
     );
   }
