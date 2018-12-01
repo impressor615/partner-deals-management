@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Header from '@/components/Header';
+import Pagination from '@/components/Pagination';
 import { HEADER } from '@/viewmodels/partners';
 // import {
 //   getPartners,
@@ -88,6 +89,9 @@ class Page extends PureComponent {
         </div>
         <div className="partners-table-wrapper">
           <PartnerDealsTable items={deals} />
+        </div>
+        <div className="partners-pagination-wrapper">
+          <Pagination first last={false} totalPages={11} currentPage={1} />
         </div>
       </div>
     );
