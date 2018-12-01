@@ -13,4 +13,6 @@ export {
   getPartners,
   getDestinations,
   getDeal,
+  getPartnerDeals,
+  getPartnerDealDailyData,
 } from './deals';

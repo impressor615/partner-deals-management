@@ -14,6 +14,12 @@ import {
   REQ_GET_DEAL,
   REQ_GET_DEAL_SUCCESS,
   REQ_GET_DEAL_FAILURE,
+  REQ_GET_PARTNER_DEALS,
+  REQ_GET_PARTNER_DEALS_SUCCESS,
+  REQ_GET_PARTNER_DEALS_FAILURE,
+  REQ_GET_PARTNER_DEAL_DAILY_DATA,
+  REQ_GET_PARTNER_DEAL_DAILY_DATA_SUCCESS,
+  REQ_GET_PARTNER_DEAL_DAILY_DATA_FAILURE,
 } from '@/viewmodels/actionTypes';
 
 export const getDeals = ({ token, queryString = '?page=1' }) => dispatch => (
@@ -77,6 +83,40 @@ export const getDeal = ({ token, id }) => dispatch => (
       ],
       method: 'GET',
       endpoint: `${CONFIG.API.base_url}/deals/${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  })
+);
+
+export const getPartnerDeals = ({ token, companyId, queryString = 'page=1' }) => dispatch => (
+  dispatch({
+    [RSAA]: {
+      types: [
+        REQ_GET_PARTNER_DEALS,
+        REQ_GET_PARTNER_DEALS_SUCCESS,
+        REQ_GET_PARTNER_DEALS_FAILURE,
+      ],
+      method: 'GET',
+      endpoint: `${CONFIG.API.base_url}/partners/${companyId}/company/cms${queryString}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  })
+);
+
+export const getPartnerDealDailyData = ({ token, dealId }) => dispatch => (
+  dispatch({
+    [RSAA]: {
+      types: [
+        REQ_GET_PARTNER_DEAL_DAILY_DATA,
+        REQ_GET_PARTNER_DEAL_DAILY_DATA_SUCCESS,
+        REQ_GET_PARTNER_DEAL_DAILY_DATA_FAILURE,
+      ],
+      method: 'GET',
+      endpoint: `${CONFIG.API.base_url}/partners/${dealId}/daily`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

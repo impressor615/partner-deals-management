@@ -5,8 +5,20 @@ import {
   REQ_GET_DEAL_SUCCESS,
 } from '@/viewmodels/actionTypes';
 
+// TODO: api 작동하지 않아 mockData로 진행
 export const initialState = {
-  partners: {},
+  partners: [
+    {
+      id: 3,
+      code: 'TW',
+      name: '티웨이 항공',
+    },
+    {
+      id: 15,
+      code: 'AA',
+      name: '아메리칸 항공',
+    },
+  ],
   destinations: [],
   deal: {},
 };
