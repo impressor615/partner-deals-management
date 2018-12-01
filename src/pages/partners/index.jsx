@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 import Header from '@/components/Header';
 import Pagination from '@/components/Pagination';
+import BarChart from '@/components/BarChart';
 import { HEADER } from '@/viewmodels/partners';
 // import {
 //   getPartners,
@@ -79,6 +80,16 @@ class Page extends PureComponent {
     };
   }
 
+  getChartOptions = () => {
+    const { dailyData } = this.props;
+    const max = dailyData.sort((a, b) => b.totalSiteCount - a.totalSiteCount)[0].totalSiteCount;
+    return {
+      max,
+      itemMarkers: dailyData.map(item => item.title),
+      values: dailyData.map(item => item.totalSiteCount),
+    };
+  }
+
   render() {
     const { partners, deals } = this.props;
     return (
@@ -87,6 +98,7 @@ class Page extends PureComponent {
           <Header title={HEADER.title} navItems={HEADER.nav_items} />
           <PartnerInputs partners={partners} {...this.getInputOptions()} />
         </div>
+        <BarChart {...this.getChartOptions()} />
         <div className="partners-table-wrapper">
           <PartnerDealsTable items={deals} />
         </div>
