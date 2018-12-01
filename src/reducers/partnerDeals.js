@@ -57,6 +57,7 @@ export const initialState = {
   ],
   deals: [
     {
+      id: 1,
       title: '진에어 슬림한진 특가',
       startDate: '2017-11-23',
       endDate: '2017-12-06',
@@ -65,6 +66,7 @@ export const initialState = {
       totalSiteCount: 54300,
     },
     {
+      id: 2,
       title: '진에어 슬림한진 특가',
       startDate: '2017-11-23',
       endDate: '2017-12-06',
@@ -73,6 +75,7 @@ export const initialState = {
       totalSiteCount: 54300,
     },
     {
+      id: 3,
       title: '진에어 슬림한진 특가',
       startDate: '2017-11-23',
       endDate: '2017-12-06',
@@ -81,6 +84,7 @@ export const initialState = {
       totalSiteCount: 54300,
     },
     {
+      id: 4,
       title: '진에어 슬림한진 특가',
       startDate: '2017-11-23',
       endDate: '2017-12-06',

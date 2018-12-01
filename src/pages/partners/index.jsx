@@ -15,6 +15,7 @@ import { HEADER } from '@/viewmodels/partners';
 // import CONFIG from '@/config';
 
 import PartnerInputs from './PartnerInputs';
+import PartnerDealsTable from './PartnerDealsTable';
 
 
 class Page extends PureComponent {
@@ -78,12 +79,15 @@ class Page extends PureComponent {
   }
 
   render() {
-    const { partners } = this.props;
+    const { partners, deals } = this.props;
     return (
       <div className="partners">
         <div className="partners-header-wrapper">
           <Header title={HEADER.title} navItems={HEADER.nav_items} />
           <PartnerInputs partners={partners} {...this.getInputOptions()} />
+        </div>
+        <div className="partners-table-wrapper">
+          <PartnerDealsTable items={deals} />
         </div>
       </div>
     );
